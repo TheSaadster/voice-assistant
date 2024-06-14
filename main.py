@@ -14,10 +14,6 @@ dotenv.load_dotenv()
 r = sr.Recognizer()
 source = sr.Microphone()
 listener_thread = None
- 
-
-
-
 
 
 client = OpenAI(
@@ -39,14 +35,6 @@ def Speak(text):
     engine.runAndWait()
 
 
-
-
-
-
-
-
-
-
 def callback(recognizer, audio):
     try:
         speech_as_text = recognizer.recognize_google(audio)
@@ -58,49 +46,6 @@ def callback(recognizer, audio):
         Speak("Oops! Didn't catch that")
     except sr.RequestError as e:
         print(f"Could not request results from Google Speech Recognition Service; {e}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def stop_listening():
-#     global listener_thread
-#     if listener_thread and listener_thread.is_alive():
-#         print("Stopping listening thread...")
-#         listener_thread.join()
-#         print("Listening thread stopped.")
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -130,30 +75,6 @@ def recognize_main():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def gpt_response(data):
     response = client.chat.completions.create(
         model="gpt-4",
@@ -164,25 +85,6 @@ def gpt_response(data):
     )
     message_content = response.choices[0].message.content
     Speak(message_content)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
